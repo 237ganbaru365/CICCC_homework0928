@@ -32,10 +32,12 @@ function productOfArray(arr){
 let last = arr.length;
 
 //base case
-if (last === 0) return 0
-if (last === 1) return arr[0]
+if (last === 0) return 1 // becasue "1" is nothing meaning for multiple case, but 0 ihas influenced to the reslut
 
-return productOfArray([last - 1]) * arr[last - 1] 
+//base case 2
+// if (last === 1) return arr[0] ==> it's also possible , but  can't use both of them in this case
+
+return arr[0] * productOfArray(arr.slice(1)) //=> slice can represent "from here to the end"
 }
 
 console.log(productOfArray([1, 2, 3]));
@@ -59,6 +61,7 @@ return reverse(str.slice(1)) + str[0];
 console.log(reverse('awesome'));
 console.log(reverse('fumina'));
 
+
 /* 04-----------------------isPalindrome---------------------------------------------------------------------
 Write a recursive function called 'isPalindrome' which returns true if the string 
 passed to it is a palindrome (reads the same forward and backward). 
@@ -72,9 +75,13 @@ Otherwise it returns false.
 
 function isPalindrome(str){
 //base case
-if(str.length <= 1) return str;
+if (str.length === 1) return true;
+if (str.length === 2) return str[0] === str[1] //boolean
 
-return isPalindrome(str.slice(1)) + str[0] === str
+if (str[0] === str.slice(-1)) return isPalindrome(str.slice(1, -1)) //.slice(-1) is the end of the word 
+
+return false 
+
 }
 
 console.log(isPalindrome('awesome')); 
